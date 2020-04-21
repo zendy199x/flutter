@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
         duration: new Duration(seconds: 3),
         backgroundColor: Colors.green,
         action: new SnackBarAction(label: 'OK', onPressed: (){
-          print('press Ok on SnackBar');
+          print('press OK on SnackBar');
         }),
     );
     //How to display Snackbar ?
