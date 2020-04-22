@@ -103,8 +103,8 @@ class LoginPageState extends State<LoginPage> {
                   child: new Text("Login"),
                   onPressed: () {
                     print('Username: ${user.userName}, '
-                        'email: ${user.email}'
-                        ', password : ${user.password}');
+                        'email: ${user.email}, '
+                        'password : ${user.password}');
                   },
                 )),
               ],
