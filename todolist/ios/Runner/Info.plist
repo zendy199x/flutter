@@ -30,8 +30,8 @@
 <!-- alow http -->
 	<key>NSAppTransportSecurity</key>
 	<dict>
-		<key>NSAllowArbitraryLoads</key>
-		<true/>
+    	<key>NSAllowsArbitraryLoads</key>
+    	<true/>
 	</dict>
 
 	<key>UISupportedInterfaceOrientations</key>

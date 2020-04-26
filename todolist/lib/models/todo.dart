@@ -31,7 +31,7 @@ Future<List<Todo>> fetchTodos(http.Client client) async {
   //How to make these URLs in a .dart file ?
   final response = await client.get(URL_TODOS);
   if (response.statusCode == 200) {
-    Map<String, dynamic> mapResponse = json.decode(response.body); //jsonDecode
+    Map<String, dynamic> mapResponse = jsonDecode(response.body); //jsonDecode
     if (mapResponse["result"] == "ok") {
       final todos = mapResponse["data"].cast<Map<String, dynamic>>(); //được các mảng gồm các object key, value dạng map
       final listOfTodos = await todos.map<Todo>((json) {
