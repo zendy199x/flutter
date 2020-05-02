@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:realworld/views/login/login_form.dart';
 
 class _HomeDrawerState extends State<HomeDrawer> {
   @override
@@ -38,7 +39,9 @@ class _HomeDrawerState extends State<HomeDrawer> {
               ListTile(
                 leading: Icon(Icons.forward),
                 title: Text('Login/Register'),
-                onTap: () {}
+                onTap: () {
+                  LoginScreen();
+                }
               ),
               Divider(
                 color: Colors.black45
@@ -65,23 +68,23 @@ class _HomeDrawerState extends State<HomeDrawer> {
           )
           ),
           Container(
-                child: Align(
-                  alignment: FractionalOffset.bottomCenter,
-                  child: Container(
-                    color: Colors.green,
-                    child: Column(
-                      children: <Widget>[
-                        ListTile(
-                          title: Text('Create by https://github.com/zendy199x', style: TextStyle(
-                            color: Colors.white, fontStyle: FontStyle.italic
-                          )),
-                          onTap: () {}
-                        )
-                      ],
+            child: Align(
+              alignment: FractionalOffset.bottomCenter,
+              child: Container(
+                color: Colors.green,
+                child: Column(
+                  children: <Widget>[
+                    ListTile(
+                      title: Text('Create by https://github.com/zendy199x', style: TextStyle(
+                        fontSize: 13.0, color: Colors.white, fontStyle: FontStyle.italic
+                      )),
+                      onTap: () {}
                     )
-                  )
+                  ],
                 )
               )
+            )
+          )
         ]
       )
     );

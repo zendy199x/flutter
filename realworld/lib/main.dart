@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:realworld/views/home_view.dart';
+import 'package:realworld/views/home/home_view.dart';
+import 'package:realworld/views/login/login_form.dart';
 
 void main() => runApp(Conduit());
 
@@ -11,7 +12,8 @@ class Conduit extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: HomeScreen(),
+      // home: HomeScreen(),
+      home: LoginScreen(),
     );
     return materialApp;
   }
