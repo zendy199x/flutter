@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'home_drawer.dart';
+
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -19,6 +21,7 @@ class HomeScreen extends StatelessWidget {
         tooltip: 'Add',
         child: Icon(Icons.add),
       ),
+      drawer: HomeDrawer(),
     );
   }
 }
