@@ -16,7 +16,7 @@ dependencies:
   flutter:
     sdk: flutter
   dio: ^3.0.9
-  rxdart: ^0.24.0
+  rxdart: ^0.20.0
   flutter_secure_storage: ^3.3.3
   flutter_markdown: ^0.3.5
   timeago: ^2.0.26

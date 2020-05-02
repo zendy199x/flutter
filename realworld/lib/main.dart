@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:realworld/views/home/home_view.dart';
-import 'package:realworld/views/login/login_form.dart';
+import 'package:flutter/services.dart';
+import 'package:realworld/utils/http.dart';
+import 'package:realworld/utils/storage.dart';
+import 'package:realworld/views/root_view.dart';
 
-void main() => runApp(Conduit());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setEnabledSystemUIOverlays([]);
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
-class Conduit extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final materialApp = MaterialApp(
-      title: 'Conduit',
-      theme: ThemeData(
-        primarySwatch: Colors.green,
-      ),
-      // home: HomeScreen(),
-      home: LoginScreen(),
-    );
-    return materialApp;
-  }
+  final String token = await storage.read(key: "token");
+
+  if (token != null) http.auth(token);
+
+  runApp(RootView());
 }

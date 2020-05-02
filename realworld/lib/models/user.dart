@@ -15,7 +15,7 @@ class User {
       token: json['token'] as String,
       username: json['token'] as String,
       bio: json['bio'] as String,
-      image: (json['image']?.isEmplty ?? true)
+      image: (json['image']?.isEmpty ?? true)
           ? "https://static.productionready.io/images/smiley-cyrus.jpg"
           : json['image'] as String,
     );
