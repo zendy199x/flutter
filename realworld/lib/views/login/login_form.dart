@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'login_bloc.dart';
 import 'package:realworld/views/home/home_view.dart';
 
-enum Account {
-  register,
-  login
-}
+enum Account { register, login }
 
 class _LoginScreenState extends State<LoginScreen> {
   @override
@@ -114,6 +111,56 @@ class _LoginScreenState extends State<LoginScreen> {
                     ],
                   ),
                 ),
+                Container(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      Container(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Container(
+                              margin: EdgeInsets.only(bottom: 20.0),
+                              child: Column(
+                                children: <Widget>[
+                                  Container(
+                                    child: Row(
+                                      children: <Widget>[
+                                        Text('Don\'t have an account? ',
+                                            style:
+                                                TextStyle(color: Colors.grey)),
+                                        GestureDetector(
+                                          onTap: () {
+                                            print("I was tapped!");
+                                          },
+                                          child: Text("Register",
+                                              style: TextStyle(
+                                                  color: Colors.green)),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  IconButton(
+                                      icon:
+                                          Icon(Icons.home, color: Colors.grey),
+                                      onPressed: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  HomeScreen()),
+                                        );
+                                      })
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                )
               ],
             )));
   }
