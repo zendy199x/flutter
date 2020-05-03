@@ -1,30 +1,47 @@
 import 'package:flutter/material.dart';
-import 'login_bloc.dart';
+import 'package:realworld/utils/navigate.dart';
+import 'package:realworld/views/register/register_bloc.dart';
 import 'package:realworld/views/home/home_view.dart';
-import 'package:realworld/views/register/register_form.dart';
+import 'package:realworld/views/login/login_form.dart';
 
 enum Account { register, login }
 
-class _LoginScreenState extends State<LoginScreen> {
-  final LoginBloc loginBloc = LoginBloc();
+class _RegisterScreenState extends State<RegisterScreen> {
+  final RegisterBloc registerBloc = RegisterBloc();
 
   @override
   void initState() {
-    loginBloc.initState();
+    registerBloc.initState();
     super.initState();
   }
 
   @override
   void dispose() {
-    loginBloc.dispose();
+    registerBloc.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    usernameField() {
+      return StreamBuilder(
+          stream: registerBloc.username,
+          builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+            return TextField(
+                keyboardType: TextInputType.text,
+                autocorrect: false,
+                decoration: InputDecoration(
+                    hintText: 'Username',
+                    border: InputBorder.none,
+                    errorText: snapshot.error,
+                    errorStyle: TextStyle(fontSize: 0, height: 0)),
+                onChanged: registerBloc.changeUsername);
+          });
+    }
+
     emailField() {
       return StreamBuilder(
-          stream: loginBloc.email,
+          stream: registerBloc.email,
           builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
             return TextField(
                 keyboardType: TextInputType.emailAddress,
@@ -34,13 +51,13 @@ class _LoginScreenState extends State<LoginScreen> {
                     border: InputBorder.none,
                     errorText: snapshot.error,
                     errorStyle: TextStyle(fontSize: 0, height: 0)),
-                onChanged: loginBloc.changeEmail);
+                onChanged: registerBloc.changeEmail);
           });
     }
 
     passwordField() {
       return StreamBuilder(
-        stream: loginBloc.password,
+        stream: registerBloc.password,
         builder: (context, snapshot) {
           return TextField(
               obscureText: true,
@@ -49,7 +66,23 @@ class _LoginScreenState extends State<LoginScreen> {
                   border: InputBorder.none,
                   errorText: snapshot.error,
                   errorStyle: TextStyle(fontSize: 0, height: 0)),
-              onChanged: loginBloc.changePassword);
+              onChanged: registerBloc.changePassword);
+        },
+      );
+    }
+
+    confirmPasswordField() {
+      return StreamBuilder(
+        stream: registerBloc.password,
+        builder: (context, snapshot) {
+          return TextField(
+              obscureText: true,
+              decoration: InputDecoration(
+                  hintText: 'Confirm password',
+                  border: InputBorder.none,
+                  errorText: snapshot.error,
+                  errorStyle: TextStyle(fontSize: 0, height: 0)),
+              onChanged: registerBloc.changePassword);
         },
       );
     }
@@ -90,7 +123,23 @@ class _LoginScreenState extends State<LoginScreen> {
                               border: Border(
                                   bottom: BorderSide(
                                       width: 1.0, color: Colors.grey))),
+                          child: usernameField()),
+                      Container(
+                          margin: EdgeInsets.only(
+                              left: 40.0, right: 40.0, bottom: 10.0),
+                          decoration: BoxDecoration(
+                              border: Border(
+                                  bottom: BorderSide(
+                                      width: 1.0, color: Colors.grey))),
                           child: passwordField()),
+                      Container(
+                          margin: EdgeInsets.only(
+                              left: 40.0, right: 40.0, bottom: 10.0),
+                          decoration: BoxDecoration(
+                              border: Border(
+                                  bottom: BorderSide(
+                                      width: 1.0, color: Colors.grey))),
+                          child: confirmPasswordField()),
                       Container(
                           margin: EdgeInsets.only(left: 40.0, right: 40.0),
                           child: Row(
@@ -99,13 +148,16 @@ class _LoginScreenState extends State<LoginScreen> {
                                   child: RaisedButton(
                                 color: Colors.green,
                                 textColor: Colors.white,
-                                child: Text('LOGIN',
+                                child: Text('REGISTER',
                                     textAlign: TextAlign.center,
                                     style:
                                         TextStyle(fontWeight: FontWeight.bold)),
                                 onPressed: () {
-                                  loginBloc.login().then((_) {
-                                    Navigator.pop(context, Account.login);
+                                  registerBloc.validate().then((_) {
+                                    print("here");
+                                    registerBloc.send().then((_) {
+                                      push(context, HomeScreen());
+                                    });
                                   });
                                 },
                               ))
@@ -130,21 +182,18 @@ class _LoginScreenState extends State<LoginScreen> {
                                   Container(
                                     child: Row(
                                       children: <Widget>[
-                                        Text('Don\'t have an account? ',
-                                            style:
-                                                TextStyle(color: Colors.grey)),
                                         GestureDetector(
                                           onTap: () {
                                             Navigator.push(
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                      RegisterScreen()),
+                                                      LoginScreen()),
                                             );
                                           },
-                                          child: Text("Register",
+                                          child: Text("Back to login",
                                               style: TextStyle(
-                                                  color: Colors.green, fontWeight: FontWeight.bold)),
+                                                  color: Colors.grey)),
                                         )
                                       ],
                                     ),
@@ -174,7 +223,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 }
 
-class LoginScreen extends StatefulWidget {
+class RegisterScreen extends StatefulWidget {
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _RegisterScreenState createState() => _RegisterScreenState();
 }

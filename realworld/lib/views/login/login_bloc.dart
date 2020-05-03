@@ -80,5 +80,3 @@ class LoginBloc {
     return Future.error("");
   }
 }
-
-final LoginBloc loginBloc = LoginBloc();
