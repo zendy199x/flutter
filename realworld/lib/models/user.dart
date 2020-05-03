@@ -13,7 +13,7 @@ class User {
     return User(
       email: json['email'] as String,
       token: json['token'] as String,
-      username: json['token'] as String,
+      username: json['username'] as String,
       bio: json['bio'] as String,
       image: (json['image']?.isEmpty ?? true)
           ? "https://static.productionready.io/images/smiley-cyrus.jpg"

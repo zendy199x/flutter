@@ -1,16 +1,15 @@
-//https://viblo.asia/p/flutter-rxdart-phan-biet-phan-biet-behaviorsubject-publishsubjectreplaysubject-Qpmlew17Krd
-
 import 'dart:async';
 
 import 'package:dio/dio.dart';
-import 'package:rxdart/rxdart.dart';
 import 'package:realworld/models/user.dart';
 import 'package:realworld/services/auth.service.dart';
 import 'package:realworld/utils/storage.dart';
+import 'package:rxdart/rxdart.dart';
 
 export 'package:realworld/models/user.dart';
 
-class RootCheck {
+class RootBloc {
+
   BehaviorSubject<bool> _loading;
   BehaviorSubject<bool> _authenticated;
   BehaviorSubject<User> _user;
@@ -25,7 +24,6 @@ class RootCheck {
     _user = BehaviorSubject<User>();
   }
 
-  //delete
   void dispose() {
     _loading.close();
     _authenticated.close();
@@ -43,6 +41,7 @@ class RootCheck {
   void setUser(User value) {
     _user.sink.add(value);
   }
+  
 
   Future<bool> loadUser() async {
     _loading.sink.add(true);
@@ -50,25 +49,25 @@ class RootCheck {
     print("logged");
 
     try {
-      Response response = await AuthService.current();
-      print(response.data['user']);
-      _user.sink.add(User.fromJson(response.data['user']));
-      _authenticated.sink.add(true);
-      _loading.sink.add(false);
-      return true;
-    } catch (e) {
-      _loading.sink.add(false);
-      _user.sink.addError("Some Error");
-      throw (e);
-    }
+        Response response = await AuthService.current();
+        print(response.data['user']);
+        _user.sink.add(User.fromJson(response.data['user']));
+        _authenticated.sink.add(true);
+        _loading.sink.add(false);
+        return true;
+      } catch (e) {
+        _loading.sink.add(false);
+        _user.sink.addError("Some Error");
+        throw (e);
+      }
   }
 
   Future<bool> logout() async {
     _user.sink.add(null);
     await storage.delete(key: "token");
-    setAuthenticated(true);
+    setAuthenticated(false);
     return true;
   }
 }
 
-final RootCheck rootCheck = RootCheck();
+final RootBloc rootBloc = RootBloc();
