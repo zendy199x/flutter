@@ -3,11 +3,11 @@
 import 'package:realworld/utils/http.dart';
 
 class CommentsService {
-  create(String slug, Map<String, dynamic> comment) async =>
+  static create(String slug, Map<String, dynamic> comment) async =>
       await http.post('/articles/$slug/comments', data: comment);
 
-  forArticle(String slug) async => await http.get('/articles/$slug/comments');
+  static forArticle(String slug) async => await http.get('/articles/$slug/comments');
 
-  delete(String slug, commentId) async =>
+  static delete(String slug, commentId) async =>
       await http.delete('/articles/$slug/comments/$commentId');
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:realworld/utils/http.dart';
 import 'package:realworld/utils/storage.dart';
-import 'package:realworld/views/root_view.dart';
+import 'package:realworld/views/root/root_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

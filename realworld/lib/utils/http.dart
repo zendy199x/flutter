@@ -12,7 +12,6 @@ class Http {
   //Handling Errors - https://github.com/flutterchina/dio#extends-dio-class
   get(String url) async {
     try {
-      //404
       return await dio.get('$APIURL/$url');
     } on DioError catch(e) {
        // The request was made and the server responded with a status code
@@ -46,9 +45,25 @@ class Http {
     }
   }
 
-    put(String url, {data}) async {
+  put(String url, {data}) async {
     try {
       return await dio.put("$APIURL/$url", data: data);
+    } catch (e) {
+      if (e.response != null) {
+        print(e.response.data);
+        print(e.response.headers);
+        print(e.response.request);
+      } else {
+        print(e.request);
+        print(e.message);
+      }
+      throw (e);
+    }
+  }
+
+  patch(String url, {data}) async {
+    try {
+      return await dio.patch("$APIURL/$url", data: data);
     } catch (e) {
       if (e.response != null) {
         print(e.response.data);

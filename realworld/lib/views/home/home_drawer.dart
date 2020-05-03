@@ -37,7 +37,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
                 ),
               ),
               ListTile(
-                leading: Icon(Icons.forward),
+                leading: Icon(Icons.input),
                 title: Text('Login/Register'),
                 onTap: () {
                   LoginScreen();
