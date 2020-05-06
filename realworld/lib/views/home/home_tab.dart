@@ -1,45 +1,44 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart' show Icons, Colors;
+import 'package:flutter/material.dart';
+import 'package:realworld/views/your_feed/your_feed_view.dart';
+import 'package:realworld/views/global_feed/global_feed_view.dart';
 
-class HomeTab extends StatefulWidget {
-
-  final Function(int) onChange;
-  final int index;
-
-  HomeTab({ this.onChange, this.index: 0 });
-  
+class HomeTabScreen extends StatefulWidget {
   @override
-  _HomeTabState createState() => _HomeTabState();
+  _HomeTabScreenState createState() => _HomeTabScreenState();
 }
 
-class _HomeTabState extends State<HomeTab> {
-
-  BottomNavigationBarItem _tabItem(String title, Icon icon) {
-    return BottomNavigationBarItem(
-      icon: icon,
-      title: Text('$title'),
-    );
-  }
-  
+class _HomeTabScreenState extends State<HomeTabScreen> {
   @override
   Widget build(BuildContext context) {
-
-    List<BottomNavigationBarItem> tabs = [
-      _tabItem('Global Feed', Icon(Icons.public)),
-      _tabItem('Your Feed', Icon(Icons.person_add)),
-    ];
-
-    return MediaQuery.of(context).viewInsets.bottom == 0
-        ? Align(
-            alignment: Alignment.bottomCenter,
-            child: CupertinoTabBar(
-              onTap: widget.onChange,
-              currentIndex: widget.index,
-              backgroundColor: Colors.white30,
-              iconSize: 24.0,
-              items: tabs,
+    return DefaultTabController(
+      length: 2,
+      child: Column(
+        children: <Widget>[
+          Container(
+            constraints: BoxConstraints(maxHeight: 150.0),
+            child: Material(
+              // color: Colors.transparent,
+              // textStyle: Theme.of(context).primaryTextTheme.body2,
+              child: TabBar(
+                indicatorColor: Colors.blue,
+                indicatorWeight: 2.0,
+                tabs: [
+                  Tab(text: "YOUR FEED"),
+                  Tab(text: "GLOBAL FEED"),
+                ],
+              ),
             ),
-          )
-        : Align();
+          ),
+          Expanded(
+            child: TabBarView(
+              children: [
+                YourFeedView(),
+                GlobalFeedView(),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

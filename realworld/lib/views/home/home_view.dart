@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'home_drawer.dart';
+import 'package:realworld/views/home/home_tab.dart';
+import 'package:realworld/views/home/home_drawer.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -9,12 +10,10 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Conduit'),
       ),
-      body: Center(
-        child: Container(
-          child: Text('Home Screen', style: TextStyle(
-            fontSize: 25.0, color: Colors.green, fontWeight: FontWeight.w600
-          ))
-        ),
+      body: Stack(
+        children: <Widget>[
+          HomeTabScreen()
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => {},
