@@ -142,6 +142,24 @@ class _HomeDrawerState extends State<HomeDrawer> {
                         });
                       }),
                   routeDrawer(),
+                  Container(
+            child: Align(
+              alignment: FractionalOffset.bottomCenter,
+              child: Container(
+                color: Colors.green,
+                child: Column(
+                  children: <Widget>[
+                    ListTile(
+                      title: Text('Create by https://github.com/zendy199x', style: TextStyle(
+                        fontSize: 13.0, color: Colors.white, fontStyle: FontStyle.italic
+                      )),
+                      onTap: () {}
+                    )
+                  ],
+                )
+              )
+            )
+          )
                 ],
               );
       },

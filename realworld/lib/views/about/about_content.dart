@@ -24,32 +24,28 @@ class _AboutContentState extends State<AboutContent> {
             Container(
                 margin: EdgeInsets.symmetric(vertical: 20.0),
                 child: RichText(
-                  text: TextSpan(
-                    children: [
-                      TextSpan(
-                        text: 'This app is an exemplary project to show how a Medium.com clone (called Conduit) is built using Flutter to connect to any other backend from ',
-                        style: TextStyle(color: Colors.grey)
-                      ),
-                      TextSpan(
-                        style: TextStyle(color: Colors.green),
-                        text: 'https://realworld.io/',
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () async {
-                            final url = 'https://realworld.io/';
-                            if (await canLaunch(url)) {
-                              await launch(
-                                url,
-                                forceSafariVC: false,
-                              );
-                            } else {
-                              throw 'Could not launch $url';
-                            }
-                          },
-                      ),
-                    ]
-                  )
-                )
-                ),
+                    text: TextSpan(children: [
+                  TextSpan(
+                      text:
+                          'This app is an exemplary project to show how a Medium.com clone (called Conduit) is built using Flutter to connect to any other backend from ',
+                      style: TextStyle(color: Colors.grey)),
+                  TextSpan(
+                    style: TextStyle(color: Colors.green),
+                    text: 'https://realworld.io/',
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () async {
+                        final url = 'https://realworld.io/';
+                        if (await canLaunch(url)) {
+                          await launch(
+                            url,
+                            forceSafariVC: false,
+                          );
+                        } else {
+                          throw 'Could not launch $url';
+                        }
+                      },
+                  ),
+                ]))),
             Divider(color: Colors.black45),
             Container(
                 margin: EdgeInsets.symmetric(vertical: 20.0),
@@ -59,9 +55,29 @@ class _AboutContentState extends State<AboutContent> {
             Divider(color: Colors.black45),
             Container(
                 margin: EdgeInsets.symmetric(vertical: 20.0),
-                child: Text(
-                    'This example stack has been created by INsanityDesign.com for RealWorld.io and is licensed under MIT. You can checkout at github.com/zendy199x.',
-                    style: TextStyle(color: Colors.grey, fontSize: 14.0))),
+                child: RichText(
+                    text: TextSpan(children: [
+                  TextSpan(
+                      text:
+                          'This example stack has been created by INsanityDesign.com for RealWorld.io and is licensed under MIT. You can checkout at ',
+                      style: TextStyle(color: Colors.grey)),
+                  TextSpan(
+                    style: TextStyle(color: Colors.green),
+                    text: 'github.com/zendy199x',
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () async {
+                        final url = 'github.com/zendy199x';
+                        if (await canLaunch(url)) {
+                          await launch(
+                            url,
+                            forceSafariVC: false,
+                          );
+                        } else {
+                          throw 'Could not launch $url';
+                        }
+                      },
+                  ),
+                ]))),
           ],
         ));
   }
