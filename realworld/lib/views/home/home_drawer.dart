@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:realworld/utils/navigate.dart';
 import 'package:realworld/models/user.dart';
 import 'package:realworld/views/login/login_form.dart';
 import 'package:realworld/views/root/root_bloc.dart';
 import 'package:realworld/views/about/about_view.dart';
 import 'package:realworld/views/home/home_view.dart';
+import 'package:realworld/views/account/account_view.dart';
 
 class _HomeDrawerState extends State<HomeDrawer> {
   @override
@@ -34,7 +36,8 @@ class _HomeDrawerState extends State<HomeDrawer> {
                     stream: rootBloc.user,
                     builder: (context, AsyncSnapshot<User> snapshot) {
                       return snapshot.hasData
-                          ? Column(
+                          ? GestureDetector(
+                              child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
@@ -50,14 +53,18 @@ class _HomeDrawerState extends State<HomeDrawer> {
                                 Text("${snapshot.data.email}",
                                     style: TextStyle(color: Colors.grey[500]))
                               ],
-                            )
+                            ),
+                            onTap: () {
+                              push(context, AccountScreen());
+                            }  
+                          )
                           : Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Image.asset('images/flutter_realworld.png')
-                            ],
-                          );
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Image.asset('images/flutter_realworld.png')
+                              ],
+                            );
                     }))
           ],
         ),
@@ -143,23 +150,22 @@ class _HomeDrawerState extends State<HomeDrawer> {
                       }),
                   routeDrawer(),
                   Container(
-            child: Align(
-              alignment: FractionalOffset.bottomCenter,
-              child: Container(
-                color: Colors.green,
-                child: Column(
-                  children: <Widget>[
-                    ListTile(
-                      title: Text('Create by https://github.com/zendy199x', style: TextStyle(
-                        fontSize: 13.0, color: Colors.white, fontStyle: FontStyle.italic
-                      )),
-                      onTap: () {}
-                    )
-                  ],
-                )
-              )
-            )
-          )
+                      child: Align(
+                          alignment: FractionalOffset.bottomCenter,
+                          child: Container(
+                              color: Colors.green,
+                              child: Column(
+                                children: <Widget>[
+                                  ListTile(
+                                      title: Text(
+                                          'Create by https://github.com/zendy199x',
+                                          style: TextStyle(
+                                              fontSize: 13.0,
+                                              color: Colors.white,
+                                              fontStyle: FontStyle.italic)),
+                                      onTap: () {})
+                                ],
+                              ))))
                 ],
               );
       },

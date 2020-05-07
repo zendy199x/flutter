@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'login_bloc.dart';
+import 'package:realworld/views/login/login_bloc.dart';
 import 'package:realworld/views/home/home_view.dart';
 import 'package:realworld/views/register/register_form.dart';
 

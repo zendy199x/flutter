@@ -25,7 +25,7 @@ class RegisterBloc {
   Function(String) get changePassword => _password.sink.add;
 
   void initState() {
-    _loading = BehaviorSubject<bool>();
+    _loading = BehaviorSubject<bool>(seedValue: false);
     _email = BehaviorSubject<String>(seedValue: "");
     _username = BehaviorSubject<String>(seedValue: "");
     _password = BehaviorSubject<String>(seedValue: "");

@@ -22,7 +22,7 @@ dependencies:
   timeago: ^2.0.26
   url_launcher: ^5.4.5
   fluro: ^1.6.3
-
+  # hidden_drawer_menu: ^1.1.2
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
