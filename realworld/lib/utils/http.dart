@@ -14,7 +14,7 @@ class Http {
     try {
       return await dio.get('$APIURL/$url');
     } on DioError catch(e) {
-       // The request was made and the server responded with a status code
+      // The request was made and the server responded with a status code
       // that falls out of the range of 2xx and is also not 304.
       if (e.response != null) {
         print(e.response.data);

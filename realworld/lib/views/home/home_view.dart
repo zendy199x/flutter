@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:realworld/views/home/home_tab.dart';
 import 'package:realworld/views/home/home_drawer.dart';
+import 'package:realworld/views/root/root_bloc.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -12,7 +13,7 @@ class HomeScreen extends StatelessWidget {
       ),
       body: Stack(
         children: <Widget>[
-          HomeTabScreen()
+          getBody()
         ],
       ),
       floatingActionButton: FloatingActionButton(
@@ -21,6 +22,18 @@ class HomeScreen extends StatelessWidget {
         child: Icon(Icons.add),
       ),
       drawer: HomeDrawer(),
+    );
+  }
+
+  getBody() {
+    return StreamBuilder(
+      stream: rootBloc.authenticated,
+      initialData: false,
+      builder: (context, snapshot) {
+        return snapshot.data
+          ? HomeTabScreen()
+          : Container();
+      }
     );
   }
 }

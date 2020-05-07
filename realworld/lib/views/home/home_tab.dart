@@ -17,14 +17,17 @@ class _HomeTabScreenState extends State<HomeTabScreen> {
           Container(
             constraints: BoxConstraints(maxHeight: 150.0),
             child: Material(
-              // color: Colors.transparent,
-              // textStyle: Theme.of(context).primaryTextTheme.body2,
+              color: Colors.yellow,
               child: TabBar(
                 indicatorColor: Colors.blue,
                 indicatorWeight: 2.0,
                 tabs: [
-                  Tab(text: "YOUR FEED"),
-                  Tab(text: "GLOBAL FEED"),
+                  Tab(child: Text(
+                    "YOUR FEED", style: TextStyle(color: Colors.black),
+                  )),
+                  Tab(child: Text(
+                    "GLOBAL FEED", style: TextStyle(color: Colors.black),
+                  )),
                 ],
               ),
             ),

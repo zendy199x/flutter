@@ -3,8 +3,6 @@ import 'login_bloc.dart';
 import 'package:realworld/views/home/home_view.dart';
 import 'package:realworld/views/register/register_form.dart';
 
-import 'package:realworld/routes/route.dart';
-
 enum Account { register, login }
 
 class _LoginScreenState extends State<LoginScreen> {
