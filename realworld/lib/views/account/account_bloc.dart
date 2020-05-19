@@ -49,6 +49,7 @@ class AccountModalView {
   String username;
   String bio;
   String email;
+  String password;
 
   Map<String, dynamic> toMap() {
     return {
@@ -56,7 +57,8 @@ class AccountModalView {
         "image": this.image,
         "username": this.username,
         "bio": this.bio,
-        "email": this.email
+        "email": this.email,
+        "password": this.password
       }
     };
   }

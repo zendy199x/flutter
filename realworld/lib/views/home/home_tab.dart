@@ -1,47 +1,45 @@
-import 'package:flutter/material.dart';
-import 'package:realworld/views/your_feed/your_feed_view.dart';
-import 'package:realworld/views/global_feed/global_feed_view.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart' show Icons, Colors;
 
-class HomeTabScreen extends StatefulWidget {
+class HomeBottom extends StatefulWidget {
+
+  final Function(int) onChange;
+  final int index;
+
+  HomeBottom({ this.onChange, this.index: 1 });
+  
   @override
-  _HomeTabScreenState createState() => _HomeTabScreenState();
+  _HomeBottomState createState() => _HomeBottomState();
 }
 
-class _HomeTabScreenState extends State<HomeTabScreen> {
+class _HomeBottomState extends State<HomeBottom> {
+
+  BottomNavigationBarItem _tabItem(String title, Icon icon) {
+    return BottomNavigationBarItem(
+      icon: icon,
+      title: Text('$title'),
+    );
+  }
+  
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      child: Column(
-        children: <Widget>[
-          Container(
-            constraints: BoxConstraints(maxHeight: 150.0),
-            child: Material(
-              color: Colors.yellow,
-              child: TabBar(
-                indicatorColor: Colors.blue,
-                indicatorWeight: 2.0,
-                tabs: [
-                  Tab(child: Text(
-                    "YOUR FEED", style: TextStyle(color: Colors.black),
-                  )),
-                  Tab(child: Text(
-                    "GLOBAL FEED", style: TextStyle(color: Colors.black),
-                  )),
-                ],
-              ),
+
+    List<BottomNavigationBarItem> tabs = [
+      _tabItem('YOUR FEED', Icon(Icons.person)),
+      _tabItem('GLOBAL FEED', Icon(Icons.public)),
+    ];
+
+    return MediaQuery.of(context).viewInsets.bottom == 0
+        ? Align(
+            alignment: Alignment.topCenter,
+            child: CupertinoTabBar(
+              onTap: widget.onChange,
+              currentIndex: widget.index,
+              backgroundColor: Colors.yellow,
+              iconSize: 24.0,
+              items: tabs,
             ),
-          ),
-          Expanded(
-            child: TabBarView(
-              children: [
-                YourFeedView(),
-                GlobalFeedView(),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
+          )
+        : Align();
   }
 }

@@ -3,5 +3,5 @@
 import 'package:realworld/utils/http.dart';
 
 class TagsService {
-  static getAll() async => await http.get('/tags');
+  getAll() async => await http.get('/tags');
 }

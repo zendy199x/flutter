@@ -6,8 +6,9 @@ class User {
   final String username;
   final String bio;
   final String image;
+  final String password;
 
-  User({this.email, this.token, this.username, this.bio, this.image});
+  User({this.email, this.token, this.username, this.bio, this.image, this.password});
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
@@ -18,6 +19,7 @@ class User {
       image: (json['image']?.isEmpty ?? true)
           ? "https://static.productionready.io/images/smiley-cyrus.jpg"
           : json['image'] as String,
+      password: json['password'] as String
     );
   }
 }

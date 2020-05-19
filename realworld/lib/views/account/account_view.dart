@@ -3,8 +3,6 @@ import 'package:realworld/views/home/home_view.dart';
 import 'package:realworld/views/account/account_form.dart';
 
 class AccountScreen extends StatefulWidget {
-  AccountScreen({Key key}) : super(key: key);
-
   @override
   _AccountScreenState createState() => _AccountScreenState();
 }
@@ -20,9 +18,9 @@ class _AccountScreenState extends State<AccountScreen> {
             onPressed: () {
               Navigator.pop(context, HomeScreen());
             }),
-        actions: [
-          IconButton(icon: Icon(Icons.save, size: 30.0), onPressed: () {}),
-        ],
+        // actions: [
+        //   IconButton(icon: Icon(Icons.save, size: 30.0), onPressed: () {}),
+        // ],
       ),
       body: Container(
         child: AccountForm(),

@@ -3,11 +3,11 @@
 import 'package:realworld/utils/http.dart';
 
 class ProfileService {
-  static get(String username) async => await http.get('/profiles/$username');
+  get(String username) async => await http.get('/profiles/$username');
 
-  static folow(String username) async =>
+  folow(String username) async =>
       await http.post('/profiles/$username/follow');
 
-  static unfollow(String username) async =>
+  unfollow(String username) async =>
       await http.delete('/profiles/$username/follow');
 }

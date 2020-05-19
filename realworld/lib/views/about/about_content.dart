@@ -46,13 +46,13 @@ class _AboutContentState extends State<AboutContent> {
                       },
                   ),
                 ]))),
-            Divider(color: Colors.black45),
+            Divider(color: Colors.grey),
             Container(
                 margin: EdgeInsets.symmetric(vertical: 20.0),
                 child: Text(
                     'RealWorld example project have been initialed by Thinkster.io provide a realworld scenario as tutorial to see how any different backend/frontend programming language and/or framework could work out in your project.',
                     style: TextStyle(color: Colors.grey, fontSize: 14.0))),
-            Divider(color: Colors.black45),
+            Divider(color: Colors.grey),
             Container(
                 margin: EdgeInsets.symmetric(vertical: 20.0),
                 child: RichText(
@@ -63,10 +63,10 @@ class _AboutContentState extends State<AboutContent> {
                       style: TextStyle(color: Colors.grey)),
                   TextSpan(
                     style: TextStyle(color: Colors.green),
-                    text: 'github.com/zendy199x',
+                    text: 'https://github.com/zendy199x/',
                     recognizer: TapGestureRecognizer()
                       ..onTap = () async {
-                        final url = 'github.com/zendy199x';
+                        final url = 'https://github.com/zendy199x/';
                         if (await canLaunch(url)) {
                           await launch(
                             url,

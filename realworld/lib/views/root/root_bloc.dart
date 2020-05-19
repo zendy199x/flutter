@@ -9,7 +9,6 @@ import 'package:rxdart/rxdart.dart';
 export 'package:realworld/models/user.dart';
 
 class RootBloc {
-
   BehaviorSubject<bool> _loading;
   BehaviorSubject<bool> _authenticated;
   BehaviorSubject<User> _user;
@@ -41,7 +40,6 @@ class RootBloc {
   void setUser(User value) {
     _user.sink.add(value);
   }
-  
 
   Future<bool> loadUser() async {
     _loading.sink.add(true);
@@ -49,17 +47,17 @@ class RootBloc {
     print("logged");
 
     try {
-        Response response = await AuthService.current();
-        print(response.data['user']);
-        _user.sink.add(User.fromJson(response.data['user']));
-        _authenticated.sink.add(true);
-        _loading.sink.add(false);
-        return true;
-      } catch (e) {
-        _loading.sink.add(false);
-        _user.sink.addError("Some Error");
-        throw (e);
-      }
+      Response response = await AuthService.current();
+      print(response.data['user']);
+      _user.sink.add(User.fromJson(response.data['user']));
+      _authenticated.sink.add(true);
+      _loading.sink.add(false);
+      return true;
+    } catch (e) {
+      _loading.sink.add(false);
+      _user.sink.addError("Some Error");
+      throw (e);
+    }
   }
 
   Future<bool> logout() async {

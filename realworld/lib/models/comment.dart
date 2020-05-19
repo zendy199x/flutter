@@ -13,10 +13,11 @@ class Comment {
 
   factory Comment.fromJson(Map<String, dynamic> json) {
     return Comment(
-        id: json['id'] as int,
-        createdAt: json['createAt'] as String,
-        updateAt: json['updateAt'] as String,
-        body: json['body'] as String,
-        author: Author.fromJson(json['author']));
+      id: json['id'] as int,
+      createdAt: json['createdAt'] as String,
+      updateAt: json['updateAt'] as String,
+      body: json['body'] as String,
+      author: Author.fromJson(json['author']),
+    );
   }
 }

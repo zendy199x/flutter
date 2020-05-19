@@ -9,12 +9,14 @@ class RealWorldRoutes {
 
   // =====Handler====
   static Handler _loginHandler = Handler(
-      handlerFunc: (BuildContext context, Map<String, dynamic> params) =>
-          LoginScreen());
+    handlerFunc: (BuildContext context, Map<String, dynamic> params) =>
+        LoginScreen(),
+  );
 
   static Handler _registerHandler = Handler(
-      handlerFunc: (BuildContext context, Map<String, dynamic> params) =>
-          RegisterScreen());
+    handlerFunc: (BuildContext context, Map<String, dynamic> params) =>
+        RegisterScreen(),
+  );
 
   // =====Setup Routes===
   static void setupRoutes(Router router) {

@@ -135,6 +135,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                                 TextStyle(color: Colors.grey)),
                                         GestureDetector(
                                           onTap: () {
+                                            Navigator.pop(context, Account.register);
                                             Navigator.push(
                                               context,
                                               MaterialPageRoute(
